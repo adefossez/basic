@@ -1,18 +1,16 @@
 # basic: a utility for handling basic types
 
 basic gives a framework for the definition of basic types (int, float, str etc)
-and how to combine them into more complex structures (dict, struct, list etc).
-
+and how to combine them into more complex structures (dict, struct, list etc).\
 basic can be used to document a specific structure and serialize to/from
-JSON.
-
-basic can be used to specify the structure of a MongoDB collection.
-
+JSON.\
+basic can be used to specify the structure of a MongoDB collection.\
 Finally, basic can be used in order to automatically build a highly
 structured commandline interface from inspection of class constructors.
 
 This is small personnal library. I do not intend on providing full support
 for it. This is an on-going work and major rewrites are likely.
+Not everything has been recently tested.
 
 
 ## License
@@ -30,7 +28,6 @@ represents an integer, `basic.Str` a string and `Basic.Bytes` a bytestring.
 Template types for dictionaries, lists and tuples are also available. For instance `basic.List` represents a list of any elements while `basic.List[basic.Int]` is a list of integers.
 
 Each type knows how to convert itself to and from JSON serializable basic structures (using only dict, list and other builtin types). We also support BSON (used by MongoDB).
-
 For instance, bytestring will be base84 encoded when exported to JSON.
 
 ```
