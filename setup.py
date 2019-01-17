@@ -38,8 +38,8 @@ setup(
     packages=find_packages(),
     install_requires=REQUIRED,
     include_package_data=True,
+    data_files=[("", ["LICENSE"])],
     license='MIT License',
-    test_suite="tests",
     classifiers=[
         # Trove classifiers
         # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
