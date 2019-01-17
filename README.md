@@ -42,7 +42,7 @@ For instance, bytestring will be base84 encoded when exported to JSON.
 On the other hand, BSON supports natively bytestring, therefore
 requiring no conversion.
 
-```
+```python
 >>> import basic
 >>> basic.List[basic.Bytes].to_bson([b"hello"])
 [b'hello']
@@ -59,7 +59,7 @@ In both case, the structure will be picklable, but named structure
 will use their own class while anonymous structure will use a generic one,
 which requires also pickling the entire type schema information.
 
-```
+```python
 >>> import basic
 >>> import pickle
 >>> Dog = basic.struct("Dog", name=basic.Str)
@@ -77,7 +77,7 @@ is the actual class used to represent a dog structure.
 A basic type represents both a type signature as well as containing information about whether a field is required, or which
 default value to use if not provided.
 
-```
+```python
 >>> import basic
 >>> Dog = basic.struct("Dog",
 ...     name=basic.Str, # field required
@@ -92,7 +92,7 @@ obtained calling `datetime.datetime.now()` any time a new `Dog` object is create
 
 Other possiblities default values specifiers:
 
-```
+```python
 basic.Int.none # default to None
 basic.Str.missing # if the value is not provided, this field will not be set on the structure
 basic.List.empty # if the value is not provided, create one
@@ -106,7 +106,7 @@ It is possible to automatically inspect a class constructor in order to build a 
 is done in cascade as long as type information is provided or guessable
 from the default value.
 
-```
+```python
 import basic
 
 
@@ -193,7 +193,7 @@ structure before the actual instantiation.
 
 ### Argument parsing
 
-```
+```python
 import basic
 
 class Module:
