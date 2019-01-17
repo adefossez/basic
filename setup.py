@@ -10,7 +10,7 @@ NAME = 'basic'
 DESCRIPTION = ('Utility for handling basic types, '
                'convertible to and from JSON/BSON')
 URL = 'https://github.com/adefossez/basic'
-EMAIL = 'alexandre.defossez@gmail.com'
+EMAIL = 'alexandredefossez@gmail.com'
 AUTHOR = 'Alexandre Défossez'
 REQUIRES_PYTHON = '>=3.7.0'
 VERSION = "0.1"
