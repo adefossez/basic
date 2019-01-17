@@ -184,6 +184,11 @@ def convert(basic_type, value):
     return basic_type.apply(value, _transform)
 
 
-def guess_struct(**schema):
+def lambda_guess_struct(__name=None, **schema):
     schema = {name: guess_type(value) for name, value in schema.items()}
-    return struct.lambda_struct(**schema).empty
+    return struct.lambda_struct(**schema)
+
+
+def guess_struct(__name, __bases=(), **schema):
+    schema = {name: guess_type(value) for name, value in schema.items()}
+    return struct.lambda_struct(__name, __bases, **schema)

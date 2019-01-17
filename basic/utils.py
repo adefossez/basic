@@ -47,4 +47,4 @@ def flatten(entry):
 
 
 def top_calling_module_name():
-    sys._getframe(1).f_globals.get('__name__', '__main__')
+    return sys._getframe(2).f_globals.get('__name__', '__main__')

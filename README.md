@@ -30,12 +30,13 @@ Template types for dictionaries, lists and tuples are also available. For instan
 Each type knows how to convert itself to and from JSON serializable basic structures (using only dict, list and other builtin types). We also support BSON (used by MongoDB).
 For instance, bytestring will be base84 encoded when exported to JSON.
 
-```
+```python
 >>> import basic
 >>> basic.List[basic.Bytes].to_json([b"hello"])
 ['Xk~0{Zv']
 >>> basic.List[basic.Bytes].from_json(['Xk~0{Zv'])
 [b'hello']
+
 ```
 
 On the other hand, BSON supports natively bytestring, therefore
@@ -45,6 +46,7 @@ requiring no conversion.
 >>> import basic
 >>> basic.List[basic.Bytes].to_bson([b"hello"])
 [b'hello']
+
 ```
 
 Note that `basic` does not peform the JSON/BSON serialization. It only transform the data so that it only use types supported by JSON/BSON.
@@ -65,6 +67,7 @@ which requires also pickling the entire type schema information.
 Dog(name='Laika')
 >>> pickle.loads(pickle.dumps(dog)).name
 Laika
+
 ```
 
 ### Default values
