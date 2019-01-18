@@ -39,7 +39,7 @@ class ClassType(struct.StructType):
     def convert(self, value):
         return convert(self, value)
 
-    def apply(self, value, func):
+    def _apply(self, value, func):
         if isinstance(value, struct.Struct):
             kwargs = {
                 name: self.field(name).apply(field, func)
@@ -115,6 +115,13 @@ def _parameter_type(parameter, extra=None):
     return basic_type
 
 
+def _empty_defaultify(type_):
+    if not type_.has_default:
+        if isinstance(type_, ClassType) and type_._empty_constructible:
+            return type_.empty
+    return type_
+
+
 def _init_schema(init, klass=None, extra={}):
     signature = inspect.signature(init)
     fields = {}
@@ -128,12 +135,9 @@ def _init_schema(init, klass=None, extra={}):
         elif parameter.kind == Parameter.VAR_POSITIONAL:
             args_name = name
         field_type = _parameter_type(parameter, extra.get(name))
+        field_type = _empty_defaultify(field_type)
         if not field_type.has_default:
-            if isinstance(field_type,
-                          ClassType) and field_type._empty_constructible:
-                field_type = field_type.empty
-            else:
-                empty_constructible = False
+            empty_constructible = False
         fields[name] = field_type
 
     type_ = _class_struct(
@@ -185,10 +189,16 @@ def convert(basic_type, value):
 
 
 def lambda_guess_struct(__name=None, **schema):
-    schema = {name: guess_type(value) for name, value in schema.items()}
+    schema = {
+        name: _empty_defaultify(guess_type(value))
+        for name, value in schema.items()
+    }
     return struct.lambda_struct(**schema)
 
 
 def guess_struct(__name, __bases=(), **schema):
-    schema = {name: guess_type(value) for name, value in schema.items()}
+    schema = {
+        name: _empty_defaultify(guess_type(value))
+        for name, value in schema.items()
+    }
     return struct.lambda_struct(__name, __bases, **schema)

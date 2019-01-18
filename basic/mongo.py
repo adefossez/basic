@@ -73,7 +73,9 @@ class BasicCollection:
                                              *args, **kwargs)
 
     def replace_document(self, document, *args, **kwargs):
-        return self.replace_one
+        return self.replace_one({
+            "_id": document._id
+        }, document, *args, **kwargs)
 
     def with_options(self, *args, **kwargs):
         collection = self.__collection.with_options(*args, **kwargs)
