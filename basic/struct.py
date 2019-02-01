@@ -140,6 +140,10 @@ class StructType(types.BasicType):
     def field(self, name):
         return self._schema[name]
 
+    @property
+    def fields(self):
+        return self._schema
+
     def __copy__(self):
         copied = self.__class__.__new__(self.__class__)
         copied.__dict__.update(self.__dict__)

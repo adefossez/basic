@@ -6,7 +6,7 @@ from .inspection import (class_type, lambda_guess_struct, guess_struct,
 from .struct import struct, lambda_struct
 from .types import (Any, Int, Enum, Float, Str, Bool, Datetime, Path, Bytes,
                     List, Dict, DefaultDict, Tuple, Placeholder)
-from .utils import flatten, unflatten
+from .utils import unflatten
 
 try:
     from .mongo import ObjectId, BasicCursor, BasicCollection

@@ -21,29 +21,11 @@ def set_path(args, path, value):
     args[parts[-1]] = value
 
 
-def unflatten(args):
-    unflattened = {}
+def unflatten(args, base=None):
+    base = {} if base is None else base
     for path, value in args.items():
-        set_path(unflattened, path, value)
-    return unflattened
-
-
-def flatten(entry):
-    flattened = {}
-
-    def _flatten(entry, path=[]):
-        path.append(None)
-        for key, value in entry.items():
-            path[-1] = key
-            if isinstance(value, dict):
-                _flatten(value, path)
-            else:
-                path[-1] = key
-                flattened[".".join(path)] = value
-        path.pop(-1)
-
-    _flatten(entry)
-    return flattened
+        set_path(base, path, value)
+    return base
 
 
 def top_calling_module_name():
