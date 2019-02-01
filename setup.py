@@ -39,13 +39,12 @@ setup(
     install_requires=REQUIRED,
     include_package_data=True,
     data_files=[("", ["LICENSE"])],
-    license='MIT License',
+    license='Unlicense License',
     classifiers=[
         # Trove classifiers
         # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.7',
-        'License :: OSI Approved :: MIT License',
     ],
 )
