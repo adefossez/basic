@@ -1,3 +1,4 @@
+from copy import deepcopy
 import sys
 
 
@@ -21,9 +22,11 @@ def set_path(args, path, value):
     args[parts[-1]] = value
 
 
-def unflatten(args, base=None):
+def unflatten(args, base=None, copy=True):
     base = {} if base is None else base
     for path, value in args.items():
+        if copy:
+            value = deepcopy(value)
         set_path(base, path, value)
     return base
 

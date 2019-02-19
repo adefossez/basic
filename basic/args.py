@@ -56,8 +56,10 @@ class ArgumentParser:
             type_ = type_._schema[part]
         return type_
 
-    def argv_to_json(self, argv):
+    def argv_to_json(self, argv, out=None):
         args = {}
+        if out is None:
+            out = {}
         for arg in argv:
             if arg == "--help":
                 if not self.help:
@@ -95,7 +97,7 @@ class ArgumentParser:
                     args[arg] = True
                 else:
                     args[arg] = {}
-        return args
+        return unflatten(args, out)
 
     def parse_args(self, argv=None, convert=True):
         if argv is None:
@@ -106,4 +108,4 @@ class ArgumentParser:
         return parsed
 
     def parse_json(self, json):
-        return self.type.from_json(unflatten(json))
+        return self.type.from_json(json)
