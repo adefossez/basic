@@ -143,7 +143,7 @@ class BasicType:
 
 def validate_class(value, klass):
     if not isinstance(value, klass):
-        raise ValueError(f"Expected value of type {klass!r} but got {value!r}")
+        raise TypeError(f"Expected value of type {klass!r} but got {value!r}")
     return value
 
 

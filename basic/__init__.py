@@ -12,3 +12,4 @@ try:
     from .mongo import ObjectId, BasicCursor, BasicCollection
 except ImportError:
     pass
+from .torch import Tensor, FloatOrTensor
