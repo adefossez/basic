@@ -103,15 +103,9 @@ def _parameter_type(parameter, extra=None):
             type_ = type_.empty
     basic_type = guess_type(type_)
     if default is types.MISSING:
-        if not basic_type.has_default:
-            basic_type = basic_type.missing
+        basic_type = basic_type.missing
     else:
-        if not basic_type.has_default:
-            basic_type = basic_type.default(default)
-        elif default is not None:
-            raise ValueError(f"Default value {default} provided but "
-                             f"{basic_type} already has a default value.")
-
+        basic_type = basic_type.default(default)
     return basic_type
 
 
