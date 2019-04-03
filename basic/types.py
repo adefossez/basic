@@ -402,12 +402,11 @@ class _Tuple(TemplateType):
 
     def _apply(self, value, func):
         parameters = self._get_parameters(value)
-        return func(
-            self,
-            tuple([
-                parameter.apply(item, func)
-                for parameter, item in zip(parameters, value)
-            ]))
+        return func(self,
+                    tuple([
+                        parameter.apply(item, func)
+                        for parameter, item in zip(parameters, value)
+                    ]))
 
     def _to_jsony(self, value, target):
         parameters = self._get_parameters(value)
