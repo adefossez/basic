@@ -12,8 +12,8 @@ DESCRIPTION = ('Utility for handling basic types, '
 URL = 'https://github.com/adefossez/basic'
 EMAIL = 'alexandredefossez@gmail.com'
 AUTHOR = 'Alexandre Défossez'
-REQUIRES_PYTHON = '>=3.7.0'
-VERSION = "0.1"
+REQUIRES_PYTHON = '>=3.6.0'
+VERSION = "0.2"
 
 HERE = Path(__file__).parent
 
