@@ -1,5 +1,7 @@
 # basic: a utility for handling basic types
 
+Requires python3.6.
+
 basic gives a framework for the definition of basic types (int, float, str etc)
 and how to combine them into more complex structures (dict, struct, list etc).\
 basic can be used to document a specific structure and serialize to/from
