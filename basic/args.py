@@ -9,7 +9,7 @@ from .utils import unflatten
 _STR_TYPES = (str, Path)
 
 try:
-    from .mongo import ObjectId
+    from bson.objectid import ObjectId
 except ImportError:
     pass
 else:
