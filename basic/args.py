@@ -1,10 +1,19 @@
 import functools
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
-from . import struct, types, inspection
+from . import inspection, struct, types
 from .utils import unflatten
+
+_STR_TYPES = (str, Path)
+
+try:
+    from .mongo import ObjectId
+except ImportError:
+    pass
+else:
+    _STR_TYPES += (ObjectId, )
 
 
 class ArgumentParser:
@@ -76,7 +85,7 @@ class ArgumentParser:
             elif "=" in arg:
                 path, value = arg.split('=', 1)
                 field = self.get_type(path)
-                if issubclass(field.klass, (str, Path)):
+                if issubclass(field.klass, _STR_TYPES):
                     if value.startswith("@"):
                         value = value[1:]
                     else:
