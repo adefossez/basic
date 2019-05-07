@@ -1,6 +1,6 @@
 from bson import objectid
 
-from . import types
+from . import inspection, types
 
 
 class _ObjectId(types.BasicType):
@@ -25,6 +25,7 @@ class _ObjectId(types.BasicType):
 
 
 ObjectId = _ObjectId()
+inspection.POSSIBLE_TYPES.append(ObjectId)
 
 
 class BasicCursor:
